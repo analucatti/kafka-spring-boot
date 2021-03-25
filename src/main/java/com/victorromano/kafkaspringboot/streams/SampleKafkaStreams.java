@@ -16,14 +16,21 @@ public class SampleKafkaStreams {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaStreams.class);
 
+    @org.springframework.beans.factory.annotation.Value("${kafka.topic}")
+    private String topicName;
+
+    @org.springframework.beans.factory.annotation.Value("${kafka.streams.topic}")
+    private String streamsTopicName;
+
     @Bean
     public KStream<Key, Value> testStream(StreamsBuilder kStreamBuilder) {
-        KStream<Key, Value> stream = kStreamBuilder.stream("myTopic2");
+        KStream<Key, Value> stream = kStreamBuilder.stream(topicName);
         stream
-                .peek((key, value) -> LOGGER.info("Streaming message '{}'", value.getMessage()))
-                .filter((key, value) -> value.getMessage().contains("a"))
-                .peek((key, value) -> LOGGER.info("Message '{}' passed filtering", value.getMessage()))
-                .to("myTopic3");
+            .peek((key, value) -> LOGGER.info("Streaming message '{}'", value.getMessage()))
+            .filter((key, value) -> value.getMessage().contains("a"))
+            .peek((key, value) -> LOGGER.info("Message '{}' passed filtering", value.getMessage()))
+            .to(streamsTopicName);
+
         return stream;
     }
 

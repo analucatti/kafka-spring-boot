@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 public class SampleKafkaConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaConsumer.class);
 
-    @KafkaListener(topics = "myTopic2")
+    @KafkaListener(topics = "${kafka.topic}")
     public void handle(ConsumerRecord<Key, Value> consumerRecord) {
-        LOGGER.info("Consumed message from myTopic2 with offset: {}, key: {}, value: {}",
-                consumerRecord.offset(),
-                consumerRecord.key().getKey(),
-                consumerRecord.value().getMessage());
+        LOGGER.info("Consumed message with offset: {}, key: {}, value: {}",
+            consumerRecord.offset(),
+            consumerRecord.key().getKey(),
+            consumerRecord.value().getMessage());
     }
 
 }
