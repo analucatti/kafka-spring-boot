@@ -26,7 +26,7 @@ public class SampleRestController {
 
     @PostMapping("/message")
     public String message(@RequestBody MessageDto messageDto) {
-        return producer.send(Long.toString(System.currentTimeMillis()), messageDto.getMessage());
+        return producer.send(UUID.randomUUID().toString(), messageDto.getMessage());
     }
 
 }
