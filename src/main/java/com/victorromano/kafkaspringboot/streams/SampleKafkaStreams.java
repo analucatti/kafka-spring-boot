@@ -18,13 +18,13 @@ public class SampleKafkaStreams {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaStreams.class);
 
-    @org.springframework.beans.factory.annotation.Value("{$kafka.spring.boot.project.topic1}")
+    @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.topic1}")
     private String topic1;
 
-    @org.springframework.beans.factory.annotation.Value("{$kafka.spring.boot.project.topic2}")
+    @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.topic2}")
     private String topic2;
 
-    @org.springframework.beans.factory.annotation.Value("{$kafka.spring.boot.project.topic3}")
+    @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.topic3}")
     private String topic3;
 
     @Bean
