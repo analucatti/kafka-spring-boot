@@ -1,4 +1,4 @@
-POST http://localhost:8080/message/streamTopic1
+POST http://localhost:8080/message/streamsTopic1
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/message/streamTopic2
+POST http://localhost:8080/message/streamsTopic2
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/message/streamTopic3
+POST http://localhost:8080/message/streamsTopic3
 Content-Type: application/json
 
 {
