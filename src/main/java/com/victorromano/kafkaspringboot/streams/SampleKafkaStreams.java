@@ -1,5 +1,6 @@
 package com.victorromano.kafkaspringboot.streams;
 
+import com.victorromano.avro.kafkaspringboot.Key;
 import com.victorromano.avro.kafkaspringboot.Value;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.JoinWindows;
@@ -28,9 +29,9 @@ public class SampleKafkaStreams {
     private String topic3;
 
     @Bean
-    public KStream<String, Value> streamJoin(StreamsBuilder kStreamBuilder) {
-        KStream<String, Value> streamTopic1 = kStreamBuilder.stream(topic1);
-        KStream<String, Value> streamTopic2 = kStreamBuilder.stream(topic2);
+    public KStream<Key, Value> streamJoin(StreamsBuilder kStreamBuilder) {
+        KStream<Key, Value> streamTopic1 = kStreamBuilder.stream(topic1);
+        KStream<Key, Value> streamTopic2 = kStreamBuilder.stream(topic2);
 
         streamTopic1
                 .peek((key, value) -> LOGGER.info("Message '{}' from topic 1", value.getMessage()))

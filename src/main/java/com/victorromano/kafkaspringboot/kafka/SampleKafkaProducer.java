@@ -1,16 +1,22 @@
 package com.victorromano.kafkaspringboot.kafka;
 
+import com.victorromano.avro.kafkaspringboot.Key;
 import com.victorromano.avro.kafkaspringboot.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SampleKafkaProducer {
-    private final KafkaTemplate<String, Value> kafkaTemplate;
+
+    private final KafkaTemplate<Key, Value> kafkaTemplate;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaProducer.class);
 
     @Autowired
-    public SampleKafkaProducer(KafkaTemplate<String, Value> kafkaTemplate) {
+    public SampleKafkaProducer(KafkaTemplate<Key, Value> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
@@ -22,11 +28,16 @@ public class SampleKafkaProducer {
     }
 
     public String send(String key, String message, String topic) {
+        Key avroKey = Key.newBuilder()
+                .setKey(key)
+                .build();
+
         Value avroMessage = Value.newBuilder()
                 .setMessage(message)
                 .build();
 
-        kafkaTemplate.send(topic, key, avroMessage);
+        kafkaTemplate.send(topic, avroKey, avroMessage);
+        LOGGER.info("Sent message {} to topic {}", message, topic);
         return message;
     }
 
