@@ -25,8 +25,8 @@ public class SampleKafkaStreams {
     @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.topic2}")
     private String topic2;
 
-    @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.topic3}")
-    private String topic3;
+    @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.final.topic}")
+    private String finalTopic;
 
     @Bean
     public KStream<Key, Value> streamJoin(StreamsBuilder kStreamBuilder) {
@@ -38,10 +38,10 @@ public class SampleKafkaStreams {
                 .join(streamTopic2,
                         (key, value) -> Value.newBuilder()
                                 .setMessage(value.getMessage())
-                                .build(), JoinWindows.of(Duration.ofSeconds(30)))
+                                .build(), JoinWindows.of(Duration.ofSeconds(60000)))
                 .peek((key, value) -> LOGGER.info("Message '{}' from topic 2", value.getMessage()))
-                .to(topic3);
-        LOGGER.info("Message sent topic 3");
+                .to(finalTopic);
+        LOGGER.info("Message sent to final topic");
         return streamTopic1;
     }
 

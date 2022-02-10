@@ -2,7 +2,7 @@ POST http://localhost:8080/message/streamsTopic1
 Content-Type: application/json
 
 {
-  "message": "test-topic-1"
+  "message": "First Message"
 }
 
 ###
@@ -11,16 +11,16 @@ POST http://localhost:8080/message/streamsTopic2
 Content-Type: application/json
 
 {
-  "message": "test-topic-2"
+  "message": "Second Message"
 }
 
 ###
 
-POST http://localhost:8080/message/streamsTopic3
+POST http://localhost:8080/message/finalTopic
 Content-Type: application/json
 
 {
-  "message": "test-topic-3"
+  "message": "Final Message "
 }
 
 ###
