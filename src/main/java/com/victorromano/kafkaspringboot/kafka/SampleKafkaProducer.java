@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleKafkaProducer {
 
-    private KafkaTemplate<Key, Value> kafkaTemplate;
+    private final KafkaTemplate<Key, Value> kafkaTemplate;
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaProducer.class);
 
     @org.springframework.beans.factory.annotation.Value("${kafka.topic}")
