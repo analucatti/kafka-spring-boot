@@ -1,26 +1,26 @@
-POST http://localhost:8080/message/topic1
+POST http://localhost:8080/message/stream-topic-1
 Content-Type: application/json
 
 {
-  "message": "abc"
+  "message": "test-topic-1"
 }
 
 ###
 
-POST http://localhost:8080/message/topic2
+POST http://localhost:8080/message/stream-topic-2
 Content-Type: application/json
 
 {
-  "message": "ana2"
+  "message": "test-topic-2"
 }
 
 ###
 
-POST http://localhost:8080/message/topic3
+POST http://localhost:8080/message/stream-topic-3
 Content-Type: application/json
 
 {
-  "message": "ana2"
+  "message": "test-topic-3"
 }
 
 ###

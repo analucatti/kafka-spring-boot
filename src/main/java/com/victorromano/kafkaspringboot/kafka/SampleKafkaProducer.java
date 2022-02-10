@@ -7,15 +7,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SampleKafkaProducer {
-    private KafkaTemplate<String, Value>  kafkaTemplate;
+    private final KafkaTemplate<String, Value> kafkaTemplate;
 
     @Autowired
     public SampleKafkaProducer(KafkaTemplate<String, Value> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    @org.springframework.beans.factory.annotation.Value("{$kafka.spring.boot.project.topic1}")
+    private String topic1;
+
     public String send(String key, String message) {
-        return send(key, message, "myTopic2");
+        return send(key, message, topic1);
     }
 
     public String send(String key, String message, String topic) {
