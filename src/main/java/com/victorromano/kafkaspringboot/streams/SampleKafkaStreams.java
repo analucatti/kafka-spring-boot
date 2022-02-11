@@ -38,7 +38,7 @@ public class SampleKafkaStreams {
                 .join(streamTopic2,
                         (value1, value2) -> Value.newBuilder()
                                 .setMessage("Final Value with: " + value1.getMessage() + " and " +  value2.getMessage() + "")
-                                .build(), JoinWindows.of(Duration.ofSeconds(10)))
+                                .build(), JoinWindows.of(Duration.ofSeconds(30)))
                 .peek((key, finalValue) -> LOGGER.info("Message '{}' to final topic topic with key '{}'", finalValue.getMessage(), key))
                 .to(finalTopic);
         return streamTopic1;
