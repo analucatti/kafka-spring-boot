@@ -85,15 +85,15 @@
                         <goals>
                             <goal>schema</goal>
                         </goals>
-                        <configuration>
-                            <createSetters>false</createSetters>
-                            <sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>
-                            <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-                            <fieldVisibility>PRIVATE</fieldVisibility>
-                            <stringType>String</stringType>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <createSetters>false</createSetters>
+                    <sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>
+                    <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+                    <fieldVisibility>PRIVATE</fieldVisibility>
+                    <stringType>String</stringType>
+                </configuration>
             </plugin>
         </plugins>
     </build>
