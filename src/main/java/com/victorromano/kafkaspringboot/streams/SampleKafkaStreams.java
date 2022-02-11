@@ -34,14 +34,13 @@ public class SampleKafkaStreams {
         KStream<Key, Value> streamTopic2 = kStreamBuilder.stream(topic2);
 
         streamTopic1
-                .peek((key, value) -> LOGGER.info("Message '{}' from topic 1", value.getMessage()))
+                .peek((key, value1) -> LOGGER.info("Message '{}' from topic 1 with Key '{}'", value1.getMessage(), key.getKey()))
                 .join(streamTopic2,
-                        (key, value) -> Value.newBuilder()
-                                .setMessage(value.getMessage())
-                                .build(), JoinWindows.of(Duration.ofSeconds(60000)))
-                .peek((key, value) -> LOGGER.info("Message '{}' from topic 2", value.getMessage()))
+                        (value1, value2) -> Value.newBuilder()
+                                .setMessage("Final Value with: " + value1.getMessage() + " and " +  value2.getMessage() + "")
+                                .build(), JoinWindows.of(Duration.ofSeconds(10)))
+                .peek((key, finalValue) -> LOGGER.info("Message '{}' to final topic topic with key '{}'", finalValue.getMessage(), key))
                 .to(finalTopic);
-        LOGGER.info("Message sent to final topic");
         return streamTopic1;
     }
 

@@ -2,9 +2,6 @@ package com.victorromano.kafkaspringboot.kafka;
 
 import com.victorromano.avro.kafkaspringboot.Key;
 import com.victorromano.avro.kafkaspringboot.Value;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +14,7 @@ public class SampleKafkaProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaProducer.class);
     private final KafkaTemplate<Key, Value> kafkaTemplate;
 
-    @org.springframework.beans.factory.annotation.Value("{$kafka.spring.boot.project.topic1}")
+    @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.topic1}")
     private String topic1;
 
     public String send(String key, String message) {

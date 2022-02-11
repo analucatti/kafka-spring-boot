@@ -20,7 +20,7 @@ POST http://localhost:8080/message/finalTopic
 Content-Type: application/json
 
 {
-  "message": "Final Message "
+  "message": "Final Message"
 }
 
 ###
