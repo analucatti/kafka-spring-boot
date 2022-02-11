@@ -1,5 +1,5 @@
 # Kafka Spring Boot
-Project with setup example to use Kafka, Avro and Schema Registry with Spring Boot.
+Project with setup example to use Kafka with Avro and Schema Registry with Spring Boot using a basic consumer, producer and stream between 2 topics filtering a message.
 
 # Testing the Project
 
@@ -26,14 +26,13 @@ java -jar target/kafka-spring-boot-*.jar
 ## Test
 To generate random messages to topic:
 ```
-curl -X POST http://localhost:8080/sample
+curl --location --request POST 'http://localhost:8080/sample'
 ```
 To your own message to topic:
 ```
-curl -X POST \
-  http://localhost:8080/message \
-  -H 'Content-Type: application/json' \
-  -d '{
-        "message": "my own message"
-      }'
+curl --location --request POST 'http://localhost:8080/message' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "message": "Test my kafka application"
+}'
 ```
