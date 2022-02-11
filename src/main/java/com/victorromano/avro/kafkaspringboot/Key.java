@@ -15,10 +15,12 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class Key extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 8350692103243603990L;
+
+
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Key\",\"namespace\":\"com.victorromano.avro.kafkaspringboot\",\"fields\":[{\"name\":\"key\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Some random key\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
-  private static SpecificData MODEL$ = new SpecificData();
+  private static final SpecificData MODEL$ = new SpecificData();
 
   private static final BinaryMessageEncoder<Key> ENCODER =
       new BinaryMessageEncoder<Key>(MODEL$, SCHEMA$);
@@ -72,7 +74,7 @@ public class Key extends org.apache.avro.specific.SpecificRecordBase implements 
   }
 
   /** Some random key */
-   private java.lang.String key;
+  private java.lang.String key;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -95,7 +97,7 @@ public class Key extends org.apache.avro.specific.SpecificRecordBase implements 
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return key;
-    default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
@@ -103,8 +105,8 @@ public class Key extends org.apache.avro.specific.SpecificRecordBase implements 
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: key = (java.lang.String)value$; break;
-    default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+    case 0: key = value$ != null ? value$.toString() : null; break;
+    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
@@ -155,6 +157,7 @@ public class Key extends org.apache.avro.specific.SpecificRecordBase implements 
   /**
    * RecordBuilder for Key instances.
    */
+  @org.apache.avro.specific.AvroGenerated
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Key>
     implements org.apache.avro.data.RecordBuilder<Key> {
 
@@ -163,7 +166,7 @@ public class Key extends org.apache.avro.specific.SpecificRecordBase implements 
 
     /** Creates a new Builder */
     private Builder() {
-      super(SCHEMA$);
+      super(SCHEMA$, MODEL$);
     }
 
     /**
@@ -183,7 +186,7 @@ public class Key extends org.apache.avro.specific.SpecificRecordBase implements 
      * @param other The existing instance to copy.
      */
     private Builder(com.victorromano.avro.kafkaspringboot.Key other) {
-      super(SCHEMA$);
+      super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.key)) {
         this.key = data().deepCopy(fields()[0].schema(), other.key);
         fieldSetFlags()[0] = true;

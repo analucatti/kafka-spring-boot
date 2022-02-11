@@ -5,20 +5,17 @@ import com.victorromano.avro.kafkaspringboot.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class SampleKafkaProducer {
-
-    private final KafkaTemplate<Key, Value> kafkaTemplate;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaProducer.class);
-
-    @Autowired
-    public SampleKafkaProducer(KafkaTemplate<Key, Value> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
+    private final KafkaTemplate<Key, Value> kafkaTemplate;
 
     @org.springframework.beans.factory.annotation.Value("{$kafka.spring.boot.project.topic1}")
     private String topic1;
@@ -38,7 +35,7 @@ public class SampleKafkaProducer {
 
         kafkaTemplate.send(topic, avroKey, avroMessage);
         LOGGER.info("Sent message {} to topic {}", message, topic);
-        return message;
+        return avroMessage.toString();
     }
 
 }
