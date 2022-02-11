@@ -1,13 +1,26 @@
-POST http://localhost:8080/message
+POST http://localhost:8080/message/streamsTopic1
 Content-Type: application/json
 
 {
-  "message": "Test my kafka application"
+  "message": "First Message"
 }
 
 ###
 
-POST http://localhost:8080/sample
+POST http://localhost:8080/message/streamsTopic2
 Content-Type: application/json
+
+{
+  "message": "Second Message"
+}
+
+###
+
+POST http://localhost:8080/message/finalTopic
+Content-Type: application/json
+
+{
+  "message": "Final Message"
+}
 
 ###

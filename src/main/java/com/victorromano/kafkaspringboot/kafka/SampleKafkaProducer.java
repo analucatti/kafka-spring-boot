@@ -14,10 +14,14 @@ public class SampleKafkaProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleKafkaProducer.class);
     private final KafkaTemplate<Key, Value> kafkaTemplate;
 
-    @org.springframework.beans.factory.annotation.Value("${kafka.topic}")
-    private String topicName;
+    @org.springframework.beans.factory.annotation.Value("${kafka.spring.boot.project.topic1}")
+    private String topic1;
 
     public String send(String key, String message) {
+        return send(key, message, topic1);
+    }
+
+    public String send(String key, String message, String topic) {
         Key avroKey = Key.newBuilder()
                 .setKey(key)
                 .build();
@@ -26,8 +30,8 @@ public class SampleKafkaProducer {
                 .setMessage(message)
                 .build();
 
-        kafkaTemplate.send(topicName, avroKey, avroMessage);
-        LOGGER.info("Sent message {} to topic {}", message, topicName);
+        kafkaTemplate.send(topic, avroKey, avroMessage);
+        LOGGER.info("Sent message {} to topic {}", message, topic);
         return avroMessage.toString();
     }
 
