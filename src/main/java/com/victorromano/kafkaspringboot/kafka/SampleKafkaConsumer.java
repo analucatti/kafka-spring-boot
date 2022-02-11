@@ -15,9 +15,9 @@ public class SampleKafkaConsumer {
     @KafkaListener(topics = "${kafka.topic}")
     public void handle(ConsumerRecord<Key, Value> consumerRecord) {
         LOGGER.info("Consumed message with offset: {}, key: {}, value: {}",
-            consumerRecord.offset(),
-            consumerRecord.key().getKey(),
-            consumerRecord.value().getMessage());
+                consumerRecord.offset(),
+                consumerRecord.key().getKey(),
+                consumerRecord.value().getMessage());
     }
 
 }

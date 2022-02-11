@@ -13,7 +13,7 @@ public class KafkaExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        LOGGER.error("Kafka error: ", ex);
+        LOGGER.error("Unable to process message: ", ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 }
